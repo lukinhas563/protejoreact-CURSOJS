@@ -6,12 +6,14 @@ import App from './App.jsx'
 import Login from './pages/Login/index.jsx'
 import Contato from './pages/Contact/index.jsx'
 import Home from './pages/Home/index.jsx'
+import Page404 from './pages/Page404/index.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <Page404 />,
     children: [
       {
         path: '/',
