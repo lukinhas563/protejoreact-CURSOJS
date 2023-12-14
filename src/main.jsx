@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
 import App from './App.jsx'
 import Login from './pages/Login/index.jsx'
 import Contato from './pages/Contact/index.jsx'
 import Home from './pages/Home/index.jsx'
 import Page404 from './pages/Page404/index.jsx'
-
 
 const router = createBrowserRouter([
   {
@@ -25,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/contato',
-        element: <Contato />
+        element: <Contato isClosed />
+      },
+      {
+        path: 'oldcontact',
+        element: <Navigate to={'/'} />
       }
     ]
   }
