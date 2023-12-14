@@ -2,6 +2,7 @@ import { BsFillHouseDoorFill, BsDoorClosedFill } from "react-icons/bs";
 
 import { Link } from "react-router-dom"
 import { Nav } from "./styled";
+import { useSelector } from 'react-redux'
 
 export default function Header() {
 

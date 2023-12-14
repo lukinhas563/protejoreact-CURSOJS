@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
+
 import App from './App.jsx'
 import Login from './pages/Login/index.jsx'
 import Contato from './pages/Contact/index.jsx'
