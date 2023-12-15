@@ -31,7 +31,9 @@ export default function Login() {
             toast.error('Senha inválida')
         }
 
-        dispatch(actions.loginReques({ email, password }))
+        if (formErrors) return;
+
+        dispatch(actions.loginRequest({ email, password }))
     }
 
     return (

@@ -1,6 +1,6 @@
 import * as types from '../types'
 
-export function loginReques(payload) {
+export function loginRequest(payload) {
 
     return {
         type: types.LOGIN_REQUEST,
