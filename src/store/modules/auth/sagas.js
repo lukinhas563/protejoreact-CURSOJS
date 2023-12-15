@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import * as actions from './actions'
 import * as types from '../types'
 import axios from '../../../services/axios'
+import { get } from 'lodash'
 
 
 function* loginRequest({ payload }) {
@@ -29,8 +30,16 @@ function* loginRequest({ payload }) {
 
 }
 
+function persistRehydrate({ payload }) {
+    const token = get(payload, 'auth.token', '')
+
+    if (!token) return
+    axios.defaults.headers.Authorization = `Bearer ${token}`
+}
+
 export default all([
 
-    takeLatest(types.LOGIN_REQUEST, loginRequest)
+    takeLatest(types.LOGIN_REQUEST, loginRequest),
+    takeLatest(types.PERSIST_REHYDRATE, persistRehydrate)
 
 ])

@@ -5,6 +5,7 @@ import { isEmail } from 'validator'
 import * as actions from '../../store/modules/auth/actions'
 import { useDispatch } from 'react-redux'
 
+
 import { Title, Form } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"

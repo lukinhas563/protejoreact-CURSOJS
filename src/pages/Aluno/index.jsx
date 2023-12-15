@@ -12,7 +12,7 @@ export default function Aluno({ isClosed }) {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
 
     if (isClosed && !isLoggedIn) {
-        toast.error('Eita porra')
+        toast.error('Usuário não cadastrado')
         return (
             <Navigate to={'/register'} />
         )
