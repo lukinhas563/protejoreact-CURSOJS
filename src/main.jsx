@@ -1,11 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
-
 import App from './App.jsx'
-
-import Contato from './pages/Contact/index.jsx'
-
 
 import Alunos from './pages/Alunos/index.jsx'
 import Register from './pages/Register/index.jsx'
@@ -38,20 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/aluno',
-        element: <Aluno isClosed={true} />
-      },
-      {
-        path: '/aluno/:id',
-        element: <Aluno isClosed={true} />
-      },
-      {
-        path: '/aluno/:id/edit',
-        element: <Aluno isClosed={true} />
-      },
-
-      {
-        path: '/contato',
-        element: <Contato isClosed />
+        element: <Aluno isClosed={true} />,
+        children: [
+          {
+            path: '/aluno/:id',
+            element: <Aluno isClosed={true} />,
+            children: [
+              {
+                path: '/aluno/:id/edit',
+                element: <Aluno isClosed={true} />
+              }
+            ]
+          }
+        ]
       },
       {
         path: 'oldcontact',
