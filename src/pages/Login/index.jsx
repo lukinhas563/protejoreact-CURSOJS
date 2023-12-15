@@ -1,6 +1,7 @@
-import { Title, Paragrafo } from "./styled"
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"
+import * as exampleAction from "../../store/modules/example/actions"
 
+import { Title, Paragrafo } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"
 
@@ -8,16 +9,11 @@ export default function Login() {
 
     const dispath = useDispatch()
 
-    function handleClick(e) {
-        e.preventDefault();
+    const handleClick = (e) => {
+        e.preventDefault()
 
-        dispath({
-            type: 'BOTAO_CLICADO'
-        })
+        dispath(exampleAction.clicaBotao())
 
-        dispath({
-            type: 'BOTAO_CLICADO'
-        })
     }
 
     return (
@@ -33,4 +29,5 @@ export default function Login() {
             <button type="button" onClick={(e) => handleClick(e)}>Enviar</button>
         </Container>
     )
+
 }
