@@ -1,13 +1,18 @@
 
+import { Title } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"
 
-export default function Home() {
+export default function Fotos() {
+
 
     return (
         <Container>
             <GlobalStyled />
-            <h1>Home</h1>
+            <Title>
+                Fotos
+            </Title>
         </Container>
     )
+
 }

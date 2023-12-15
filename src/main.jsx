@@ -1,12 +1,17 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
 
 import App from './App.jsx'
-import Login from './pages/Login/index.jsx'
+
 import Contato from './pages/Contact/index.jsx'
-import Home from './pages/Home/index.jsx'
+
+
+import Alunos from './pages/Alunos/index.jsx'
+import Register from './pages/Register/index.jsx'
+import Login from './pages/Login/index.jsx'
+import Aluno from './pages/Aluno/index.jsx'
+import Fotos from './pages/Fotos/index.jsx'
 import Page404 from './pages/Page404/index.jsx'
 
 const router = createBrowserRouter([
@@ -17,12 +22,33 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <Alunos isClosed={false} />,
+      },
+      {
+        path: '/register',
+        element: <Register isClosed={false} />
       },
       {
         path: '/login',
-        element: <Login />
+        element: <Login isClosed={false} />
       },
+      {
+        path: '/fotos/:id',
+        element: <Fotos isClosed={true} />
+      },
+      {
+        path: '/aluno',
+        element: <Aluno isClosed={true} />
+      },
+      {
+        path: '/aluno/:id',
+        element: <Aluno isClosed={true} />
+      },
+      {
+        path: '/aluno/:id/edit',
+        element: <Aluno isClosed={true} />
+      },
+
       {
         path: '/contato',
         element: <Contato isClosed />
