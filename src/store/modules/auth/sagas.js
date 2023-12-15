@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as types from '../types'
 import axios from '../../../services/axios'
 
+
 function* loginRequest({ payload }) {
 
 
@@ -20,7 +21,6 @@ function* loginRequest({ payload }) {
 
     } catch (e) {
 
-        console.log('to aqui')
         toast.error('Usuário ou senha inválida')
 
         yield put(actions.loginFailure)

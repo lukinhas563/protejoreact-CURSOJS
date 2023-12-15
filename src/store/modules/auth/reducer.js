@@ -13,7 +13,11 @@ export default function (state = initialState, action) {
 
         case types.LOGIN_SUCCESS: {
             console.log('REDUCER', action.payload)
-            return state
+            const newState = { ...state }
+            newState.isLoggedIn = true
+            newState.token = action.payload.token
+            newState.user = action.payload.user
+            return newState
         }
 
         case types.LOGIN_FAILURE: {

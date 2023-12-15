@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import { Provider } from "react-redux"
 import { PersistGate } from 'redux-persist/integration/react'
 
-import store, { persistor } from "./store"
+import store, { persistor } from "./store/index"
 import GlobalStyled from "./styles/GlobalStyled"
 import Header from './components/Header/index'
 

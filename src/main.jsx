@@ -1,14 +1,14 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
-import App from './App.jsx'
+import App from './App'
 
-import Alunos from './pages/Alunos/index.jsx'
-import Register from './pages/Register/index.jsx'
-import Login from './pages/Login/index.jsx'
-import Aluno from './pages/Aluno/index.jsx'
-import Fotos from './pages/Fotos/index.jsx'
-import Page404 from './pages/Page404/index.jsx'
+import Alunos from './pages/Alunos/index'
+import Register from './pages/Register/index'
+import Login from './pages/Login/index'
+import Aluno from './pages/Aluno/index'
+import Fotos from './pages/Fotos/index'
+import Page404 from './pages/Page404/index'
 
 const router = createBrowserRouter([
   {
