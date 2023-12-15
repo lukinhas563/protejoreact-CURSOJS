@@ -12,7 +12,7 @@ export default function Login() {
     const handleClick = (e) => {
         e.preventDefault()
 
-        dispath(exampleAction.clicaBotao())
+        dispath(exampleAction.clicaBotaoRequest())
 
     }
 
