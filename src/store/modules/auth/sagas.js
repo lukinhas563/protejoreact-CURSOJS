@@ -24,7 +24,7 @@ function* loginRequest({ payload }) {
 
         toast.error('Usuário ou senha inválida')
 
-        yield put(actions.loginFailure)
+        yield put(actions.loginFailure())
 
     }
 

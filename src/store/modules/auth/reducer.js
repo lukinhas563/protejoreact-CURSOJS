@@ -23,6 +23,7 @@ export default function (state = initialState, action) {
 
         case types.LOGIN_FAILURE: {
             const newState = { ...initialState }
+            newState.isLoading = false
             return newState
         }
 
