@@ -11,7 +11,7 @@ import { get } from 'lodash'
 import { Title } from "./styled"
 import Loading from '../../components/Loading/index'
 import { Container } from "../../styles/GlobalStyled"
-import { AlunoContainer, FotoContainer } from './styled'
+import { AlunoContainer, FotoContainer, NovoAluno } from './styled'
 import { BsFillImageFill, BsPencilSquare, BsBackspaceFill, BsExclamation } from "react-icons/bs"
 
 
@@ -82,6 +82,8 @@ export default function Alunos({ isClosed }) {
                 <Title>
                     Lista de Alunos
                 </Title>
+
+                <NovoAluno to='/aluno'>Novo aluno</NovoAluno>
 
                 <AlunoContainer>
                     {alunos.map(aluno => (
