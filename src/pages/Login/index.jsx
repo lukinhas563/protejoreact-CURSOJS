@@ -3,17 +3,19 @@ import { toast } from 'react-toastify'
 import { isEmail } from 'validator'
 
 import * as actions from '../../store/modules/auth/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 import { Title, Form } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"
+import Loading from '../../components/Loading/index'
 
 export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const isLoading = useSelector(state => state.auth.isLoading)
 
     const dispatch = useDispatch()
 
@@ -39,6 +41,7 @@ export default function Login() {
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             <GlobalStyled />
             <Title>
                 LOGIN

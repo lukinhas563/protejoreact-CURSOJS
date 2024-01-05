@@ -9,9 +9,10 @@ import axios from '../../services/axios'
 import { get } from 'lodash'
 
 import { Title } from "./styled"
+import Loading from '../../components/Loading/index'
 import { Container } from "../../styles/GlobalStyled"
 import { AlunoContainer, FotoContainer } from './styled'
-import { BsFillImageFill, BsPencilSquare, BsBackspaceFill } from "react-icons/bs";
+import { BsFillImageFill, BsPencilSquare, BsBackspaceFill } from "react-icons/bs"
 
 
 
@@ -20,11 +21,14 @@ export default function Alunos({ isClosed }) {
     const isLoggedIn = false
 
     const [alunos, setAlunos] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         async function getData() {
+            setIsLoading(true)
             const response = await axios.get('/alunos')
             setAlunos(response.data)
+            setIsLoading(false)
         }
 
         getData()
@@ -42,7 +46,7 @@ export default function Alunos({ isClosed }) {
 
         return (
             <Container>
-
+                <Loading isLoading={isLoading} />
                 <Title>
                     Lista de Alunos
                 </Title>

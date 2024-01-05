@@ -8,16 +8,19 @@ import axios from '../../services/axios'
 import { Title, Form } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"
+import Loading from "../../components/Loading"
 
 export default function Register() {
 
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
 
+        setIsLoading(true)
         e.preventDefault()
         let formErrors = false
 
@@ -38,6 +41,8 @@ export default function Register() {
 
         if (formErrors) return
 
+        setIsLoading(true)
+
         try {
 
             await axios.post('/users/', {
@@ -45,6 +50,8 @@ export default function Register() {
             })
 
             toast.success('Cadastrado com sucesso')
+
+            setIsLoading(false)
 
             navigate('/login')
 
@@ -54,12 +61,15 @@ export default function Register() {
 
             errors.map(error => toast.error(error))
 
+            setIsLoading(false)
+
         }
 
     }
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             <GlobalStyled />
             <Title>
                 Crie sua conta
