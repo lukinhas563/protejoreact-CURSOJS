@@ -1,11 +1,12 @@
 import propTypes from 'prop-types'
 import { toast } from 'react-toastify'
-import { Navigate, useParams, useNavigate } from 'react-router-dom'
+import { Navigate, useParams, useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { get } from 'lodash'
 import { useDispatch } from 'react-redux'
+import { FaEdit, FaUserCircle } from 'react-icons/fa'
 
-import { Title, Form } from "./styled"
+import { Title, Form, ProfilePicture } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
 import { Container } from "../../styles/GlobalStyled"
 import { useState, useEffect } from 'react'
@@ -26,6 +27,7 @@ export default function Aluno({ isClosed }) {
     const [idade, setIdade] = useState('')
     const [peso, setPeso] = useState('')
     const [altura, setAltura] = useState('')
+    const [foto, setFoto] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     const { id } = useParams()
@@ -42,6 +44,7 @@ export default function Aluno({ isClosed }) {
                 const { data } = await axios.get(`/alunos/${id}`)
                 const Foto = get(data, 'Fotos[0].url', '');
 
+                setFoto(Foto)
                 setNome(data.nome)
                 setSobrenome(data.sobrenome)
                 setEmail(data.email)
@@ -174,6 +177,19 @@ export default function Aluno({ isClosed }) {
                 <Title>
                     {id ? 'Editar aluno' : 'Novo Aluno'}
                 </Title>
+
+                {id && (
+                    <ProfilePicture>
+                        {foto ? (
+                            <img src={foto} alt={nome} />
+                        ) : (
+                            <FaUserCircle size={180} />
+                        )}
+                        <Link to={`/fotos/${id}`}>
+                            <FaEdit size={24} />
+                        </Link>
+                    </ProfilePicture>
+                )}
 
                 <Form onSubmit={(e) => handleSubmit(e)}>
                     <input type='text' value={nome} onChange={e => setNome(e.target.value)} placeholder='Nome' />
