@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Alunos isCloseds={false} />,
+        element: <Alunos isClosed={false} />,
       },
       {
         path: '/register',
