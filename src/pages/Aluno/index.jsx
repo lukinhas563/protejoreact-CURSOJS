@@ -1,8 +1,9 @@
 import propTypes from 'prop-types'
 import { toast } from 'react-toastify'
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { get } from 'lodash'
+import { useDispatch } from 'react-redux'
 
 import { Title, Form } from "./styled"
 import GlobalStyled from "../../styles/GlobalStyled"
@@ -11,10 +12,13 @@ import { useState, useEffect } from 'react'
 import { isEmail, isInt, isFloat } from 'validator'
 import Loading from '../../components/Loading'
 import axios from '../../services/axios'
+import * as actions from '../../store/modules/auth/actions'
 
 export default function Aluno({ isClosed }) {
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [nome, setNome] = useState('')
     const [sobrenome, setSobrenome] = useState('')
@@ -53,7 +57,8 @@ export default function Aluno({ isClosed }) {
                 const status = get(err, 'response.status', 0)
                 const errors = get(err, 'response.data.errors', [])
 
-
+                if (status === 400) errors.map(error => toast.error(error))
+                navigate('/')
             }
 
         }
@@ -61,7 +66,7 @@ export default function Aluno({ isClosed }) {
         getData()
     }, [id])
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         let formErrors = false
 
@@ -94,6 +99,62 @@ export default function Aluno({ isClosed }) {
         if (!isFloat(String(altura))) {
             formErrors = true
             toast.error('Altura inválida')
+        }
+
+        if (formErrors) return
+
+        try {
+
+            setIsLoading(true)
+
+            if (id) {
+                //Editando
+                await axios.put(`/alunos/${id}`, {
+                    nome,
+                    sobrenome,
+                    email,
+                    idade,
+                    peso,
+                    altura
+                })
+
+                toast.success('Aluno(a) editado(a) com sucesso!')
+
+
+            } else {
+                //Criando
+                const { data } = await axios.post(`/alunos/`, {
+                    nome,
+                    sobrenome,
+                    email,
+                    idade,
+                    peso,
+                    altura
+                })
+
+                toast.success('Aluno(a) criado(a) com sucesso!')
+                navigate(`/aluno/${data.id}/edit`)
+            }
+
+            setIsLoading(false)
+
+        } catch (err) {
+
+            setIsLoading(false)
+            const status = get(err, 'response.status', 0)
+            const data = get(err, 'response.data', {})
+            const errors = get(data, 'errors', [])
+
+            if (errors.length > 0) {
+                errors.map(error => toast.error(error))
+            } else {
+                toast.error('Erro desconhecido')
+            }
+
+            if (status === 401) {
+                dispatch(actions.loginFailure())
+            }
+
         }
 
     }
